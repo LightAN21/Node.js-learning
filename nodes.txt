@@ -1,0 +1,16 @@
+Node: a runtime environment for executing JavaScript code
+
+1.	(non-blocking)asynchronous architecture (like a kitchen)
+
+	A single thread is used to handle multiple requests.
+
+	There's an enent queue in the background.
+
+	Therefore, Node is ideal for I/O-intensive apps(touch the file operating system or network), 
+	not for CPU-intensive apps(like video encoding or image manipulation service)
+
+Good learning videos:
+https://www.youtube.com/watch?v=dXyRdFDeR2o
+
+brew install node
+npm install [package] -g

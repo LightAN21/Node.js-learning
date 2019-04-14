@@ -1,0 +1,185 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+<h1>Variable of numbers:</h1>
+<script type="text/javascript">
+    var x = 1;
+    document.write("0" + (x++) + ": document.write(\"\")");
+    document.write("</br>0" + (x++) + ": another line");
+	document.write("<h4>0" + (x++) + ": another line!</h4>");
+	document.write("0" + (x++) + ": floating point number test: " + -123.45678901234567890000 + "</br>");
+	document.write("test of printing the maximum of interger in uint64_t:</br>" + 9223372036854775807 + "</br></br>");
+</script>
+
+<h1>Variable of strings:</h1>
+<script type="text/javascript">
+    var s = "Peter Piper picked a peck of pickled peppers.";
+    document.write("var  s = \"Peter Piper picked a peck of pickled peppers.\";</br>");
+    document.write("s[0] = " + s[0] + "</br>");
+    document.write("s[4] = " + s[4] + "</br>");
+    document.write("s[s.length - 2] = " + s[s.length - 2] + "</br></br>");
+
+    var t = s.split(' ');
+    document.write("var  t = s.split(' ');</br>");
+    for(var i = 0; i < t.length; i++)
+        document.write("t[" + i + "] = " + t[i] + "</br>");
+    document.write("</br>");
+</script>
+
+<h1>Functions:</h1>
+<script type="text/javascript">
+
+    var alpha = "a";
+
+    function char_to_int(x){
+        return x.charCodeAt(0);
+    }
+
+    function int_to_char(i){
+        return String.fromCharCode(i);
+    }
+
+    document.write("var  alpha = \"a\";</br>");
+    document.write("alpha[0] + 1 = " + (alpha[0] + 1) + "</br>");
+    document.write("alpha.charCodeAt(0) + 1 = " + (alpha.charCodeAt(0) + 1) + "</br>");
+    document.write("int_to_char(char_to_int(alpha) + 1) = " + int_to_char(char_to_int(alpha) + 1) + "</br>");
+</script>
+
+<h1>Event Handle 1:</h1>
+<script type="text/javascript">
+    var count = 0;
+    function add_one_line(){
+        var c = document.createElement("div");
+        c.innerHTML = "new line " + (++count) + "</br>";
+
+        var p = document.getElementById("creat_place");
+        p.appendChild(c);
+    }
+</script>
+<button onclick="add_one_line();">add a line.</button>
+<div id="creat_place"></div>
+
+<h1>Event Hendle 2:</h1>
+<p id="p1" onMouseOver="change_text_1(0);" onMouseOut="change_text_1(1)">
+    Move the mouse on this to change the text.
+</p>
+<script type="text/javascript">
+    function change_text_1(i){
+        var e = document.getElementById("p1");
+        if (i)
+            e.innerHTML = "Move the mouse on this to change the text.";
+        else
+            e.innerHTML = "Text already change.";
+    }
+</script>
+
+<h1>Objects and Methods:</h1>
+<script type="text/javascript">
+    var t = "Nine nice night nurses nursing nicely";
+    document.write("var t = \"Nine nice night nurses nursing nicely\";</br>");
+    document.write("t.length = " + t.length + "</br>");
+    document.write("t.words = " + t.words + "</br></br>");
+
+    if (t.words == undefined) {
+        //add a new method to the String class
+        String.prototype.words = function(){
+            var counts = 0;
+            if (this.charCodeAt(0) != 32)
+                counts++;
+            for (var i = 1; i < this.length; i++){
+                var tmp = this.charCodeAt(i - 1);
+                var tmp_2 = this.charCodeAt(i);
+                if (tmp == 32 && tmp_2 != 32)
+                    counts++;
+            }
+            return counts;
+        };
+    }
+    document.write("After define String.prototype.words:</br>");
+    document.write("t.words() = " + t.words() + "</br></br>");
+
+    if (t.count_spaces == undefined){
+        String.prototype.count_spaces = count_spaces;
+    }
+
+    function count_spaces(){
+        var counts = 0;
+        for (var i = 0; i < this.length; i++){
+            if (this.charCodeAt(i) == 32)
+                counts++;
+        }
+        return counts;
+    }
+    document.write("After define the function \"count_spaces\":</br>");
+    document.write("t.count_spaces() = " + t.count_spaces() + "</br>");
+</script>
+
+<h1>Arrays:</h1>
+<script type="text/javascript">
+    var arr = new Array(10);
+
+    function print_arr(a){
+        for(var i = 0; i < a.length; i++) {
+            document.write(a[i] + " ");
+        }
+        document.write("</br>");
+    }
+    for(var i = 0; i < 10; i++){
+        arr[i] = 10 - i;
+    }
+    document.write("arr:</br>");
+    print_arr(arr);
+    document.write("arr[3] = " + arr[3] + "</br></br>");
+
+    var lst = new Array(1000, 222, 4442);
+
+    document.write("lst:</br>");
+    print_arr(lst);
+
+    lst = arr.concat(lst);
+    document.write("</br>arr.concat(lst):</br>");
+    print_arr(lst);
+
+    document.write("</br>lst.join(): " + lst.join() + "</br>");
+    document.write("</br>lst.join(' - '): " + lst.join(' - ') + "</br>");
+
+    lst.pop();
+    document.write("</br>lst.pop();</br>");
+    document.write("lst.join(' - '): " + lst.join(' - ') + "</br>");
+
+    lst.pop();
+    document.write("</br>lst.pop();</br>");
+    document.write("lst.join(' - '): " + lst.join(' - ') + "</br>");
+
+    lst.push("hack");
+    document.write("</br>lst.push(\"hack\");</br>");
+    document.write("lst.join(' - '): " + lst.join(' - ') + "</br>");
+
+    lst.pop();
+    lst.sort();
+    document.write("</br>lst.pop();</br>");
+    document.write("lst.sort();</br>");
+    document.write("lst.join(' - '): " + lst.join(' - ') + "</br>");
+
+    lst.sort((a, b) => a - b);
+    document.write("</br>lst.sort((a, b) => a - b);</br>");
+    document.write("lst.join(' - '): " + lst.join(' - ') + "</br>");
+
+    lst["apple"] = 14;
+    lst["banana"] = 15;
+    document.write("</br>lst[\"apple\"] = 14;</br>lst[\"banana\"] = 15;</br>");
+    document.write("lst.join(' - '): " + lst.join(' - ') + "</br>");
+    document.write("lst[\"apple\"] + lst[\"banana\"] = " + (lst["apple"] + lst["banana"]));
+    document.write("<br>(\"apple\" in lst) = " + ("apple" in lst));
+
+</script>
+
+</body>
+
+
+</html>
